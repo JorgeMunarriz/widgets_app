@@ -27,4 +27,28 @@ const appMenuItems = <MenuItem>[
     link: '/cards',
     icon: Icons.credit_card,
   ),
+  MenuItem(
+    title: 'Scroll Infinito',
+    subtitle: 'Un contenedor estlizado',
+    link: '/infinite-scroll',
+    icon: Icons.credit_card,
+  ),
+  MenuItem(
+    title: 'Progress Indicators',
+    subtitle: 'Un contenedor estlizado',
+    link: '/progress',
+    icon: Icons.refresh,
+  ),
+  MenuItem(
+    title: 'Snackbar',
+    subtitle: 'Un contenedor estlizado',
+    link: '/snackbar',
+    icon: Icons.credit_card,
+  ),
+  MenuItem(
+    title: 'Ui controlls',
+    subtitle: 'Un contenedor estlizado',
+    link: '/ui-controlls',
+    icon: Icons.credit_card,
+  ),
 ];
