@@ -1,18 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/config/theme/app_theme.dart';
+import 'package:widgets_app/presentation/screens/providers/theme_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String name = 'home_screen';
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedColor = 0;
+  bool isDarkMode = false;
+
+  void changeTheme() {
+    setState(() {
+      selectedColor = (selectedColor + 1) % colorList.length;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Flutter + Material 3',
         ),
+        actions: [
+          IconButton(
+            onPressed: () => themeProvider.changeColor(),
+            icon: const Icon(Icons.color_lens_rounded),
+          ),
+        ],
       ),
       body: const _HomeView(),
     );
