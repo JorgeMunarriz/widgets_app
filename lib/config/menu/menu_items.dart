@@ -43,7 +43,7 @@ const appMenuItems = <MenuItem>[
     title: 'Snackbar',
     subtitle: 'Un contenedor estlizado',
     link: '/snackbar',
-    icon: Icons.credit_card,
+    icon: Icons.info_outline,
   ),
   MenuItem(
     title: 'Ui controlls',
