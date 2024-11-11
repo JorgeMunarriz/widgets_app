@@ -52,9 +52,9 @@ const appMenuItems = <MenuItem>[
     icon: Icons.check_box_outline_blank_outlined,
   ),
   MenuItem(
-    title: 'Ui controlls',
+    title: 'Ui controlls + Tiles',
     subtitle: 'Un contenedor estlizado',
-    link: '/ui-controlls',
-    icon: Icons.credit_card,
+    link: '/ui-controls',
+    icon: Icons.car_rental_outlined,
   ),
 ];

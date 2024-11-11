@@ -43,6 +43,7 @@ class SnackbarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Snackbars and dialogs'),
       ),
       body: Center(
@@ -51,17 +52,35 @@ class SnackbarScreen extends StatelessWidget {
           children: [
             FilledButton.tonal(
               onPressed: () {
-                showAboutDialog(context: context, children: [
-                  Title(
-                    color: Colors.black,
-                    child: const Text('Flutter widgets'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                      'Lorem ipsum dolor sit amet, consectetur, sed do eiusmod tempor, sed do.')
-                ]);
+                showAboutDialog(
+                  context: context,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: const Text(
+                            'Flutter widgets',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black, fontSize: 30),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        const Center(
+                          child: Text(
+                            'Lorem ipsum dolor sit amet, consectetur, sed do eiusmod tempor, sed do.',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
               },
               child: const Text('Licencias usadas'),
             ),
