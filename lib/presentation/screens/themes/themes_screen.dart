@@ -10,16 +10,14 @@ class ThemesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Themes Screen'),
         actions: [
           IconButton(
             onPressed: () {
-              ref
-                  .read(isDarkModeProvider.notifier)
-                  .update((isDarkMode) => !isDarkMode);
+              ref.read(themeNotifierProvider.notifier).toggleDarkMode();
             },
             icon: isDarkMode
                 ? const Icon(Icons.light_mode_outlined)
@@ -31,14 +29,17 @@ class ThemesScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          FilledButton.tonal(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => ColorPickerDialog(ref: ref),
-              );
-            },
-            child: const Text("Cambio de color custom"),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 0, 10),
+            child: FilledButton.tonal(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => ColorPickerDialog(ref: ref),
+                );
+              },
+              child: const Text("Cambio de color custom"),
+            ),
           ),
           const Expanded(child: _ThemeChangerView()),
         ],
@@ -104,8 +105,9 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         ),
         TextButton(
           onPressed: () {
-            widget.ref.read(selectedcolorListProvider.notifier).state =
-                selectedColor.value;
+            widget.ref
+                .read(themeNotifierProvider.notifier)
+                .changeCustomColor(selectedColor);
             Navigator.pop(context);
           },
           child: const Text('Aceptar'),
@@ -121,7 +123,7 @@ class _ThemeChangerView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final List<Color> colors = ref.watch(colorListProvider);
-    final int selectedColor = ref.watch(selectedcolorListProvider);
+    final selectedColor = ref.watch(themeNotifierProvider).selectedColor;
 
     return ListView.builder(
       itemCount: colors.length,
@@ -138,7 +140,8 @@ class _ThemeChangerView extends ConsumerWidget {
           value: index,
           groupValue: selectedColor,
           onChanged: (value) {
-            ref.read(selectedcolorListProvider.notifier).state = index;
+            // ref.read(selectedcolorListProvider.notifier).state = index;
+            ref.read(themeNotifierProvider.notifier).changeColorIndex(index);
           },
         );
       },
