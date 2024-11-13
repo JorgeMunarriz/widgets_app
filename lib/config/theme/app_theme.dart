@@ -12,20 +12,40 @@ const colorList = <Color>[
   Colors.pinkAccent,
 ];
 
+final colorNames = <Color, String>{
+  Colors.blue : 'Blue',
+  Colors.teal: 'Teal',
+  Colors.green: 'Green',
+  Colors.red: 'Red',
+  Colors.purple: 'Purple',
+  Colors.deepPurple: 'Deep Purple',
+  Colors.orange: 'Orange',
+  Colors.pink: 'Pink',
+  Colors.pinkAccent: 'Pink Accent',
+};
+
+
 class AppTheme {
-  final int selectedColor;
+  final int?
+      selectedColor; // Cambiado a nullable para manejar el color personalizado
+  final Color? customColor; // Nuevo campo para el color personalizado
+  final bool isDarkMode;
+
   AppTheme({
-    this.selectedColor = 0, required bool isDarkMode,
-  })  : assert(selectedColor >= 0, 'Selected color must be greater than 0'),
-        assert(selectedColor < colorList.length,
-            'Selected color must be less or equal than ${colorList.length - 1}');
-  // assert(selectedColor < 0, 'Selected color must be greater than 0');
+    this.selectedColor,
+    this.customColor,
+    this.isDarkMode = false,
+  }) : assert(
+            selectedColor == null ||
+                (selectedColor >= 0 && selectedColor < colorList.length),
+            'Selected color index must be between 0 and ${colorList.length - 1}');
+
+  Color get activeColor => customColor ?? colorList[selectedColor ?? 0];
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: colorList[selectedColor],
-        appBarTheme: const AppBarTheme(
-          centerTitle: false,
-        ),
+        colorSchemeSeed: activeColor,
+        appBarTheme: const AppBarTheme(centerTitle: false),
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
       );
 }

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:math' show Random;
 
-class AnimatedScreens extends StatefulWidget {
-  static const name = 'animated_screen';
+class AnimatedScreen extends StatefulWidget {
+  static const name = 'Animated_screen';
 
-  const AnimatedScreens({super.key});
+  const AnimatedScreen({super.key});
 
   @override
-  State<AnimatedScreens> createState() => _AnimatedScreensState();
+  State<AnimatedScreen> createState() => _AnimatedScreensState();
 }
 
-class _AnimatedScreensState extends State<AnimatedScreens> {
+class _AnimatedScreensState extends State<AnimatedScreen> {
   double width = 50;
   double height = 50;
-  Color color = Colors.indigo;
+  Color color = const Color.fromARGB(255, 63, 181, 112);
   double borderRadius = 10.0;
 
   void changeShape() {
@@ -34,7 +34,7 @@ class _AnimatedScreensState extends State<AnimatedScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('animated container'),
+        title: const Text('Animated container'),
       ),
       body: Center(
         child: AnimatedContainer(

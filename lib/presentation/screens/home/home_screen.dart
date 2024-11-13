@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
-import 'package:widgets_app/config/theme/app_theme.dart';
-import 'package:widgets_app/presentation/screens/providers/theme_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:widgets_app/presentation/providers/theme_provider.dart';
+import 'package:widgets_app/presentation/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String name = 'home_screen';
@@ -15,31 +15,38 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedColor = 0;
-  bool isDarkMode = false;
-
-  void changeTheme() {
-    setState(() {
-      selectedColor = (selectedColor + 1) % colorList.length;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
+    final scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text(
           'Flutter + Material 3',
         ),
-        actions: [
-          IconButton(
-            onPressed: () => themeProvider.changeColor(),
-            icon: const Icon(Icons.color_lens_rounded),
-          ),
+        actions: const [
+          // IconButton(
+          //   onPressed: () => themeProvider.changeColor(),
+          //   icon: const Icon(Icons.color_lens_rounded),
+          // ),
+          // themeProvider.isDarkMode
+          //     ? IconButton(
+          //         onPressed: () => themeProvider.toggleDarkMode(),
+          //         icon: const Icon(Icons.light_mode),
+          //       )
+          //     : IconButton(
+          //         onPressed: () => themeProvider.toggleDarkMode(),
+          //         icon: const Icon(Icons.dark_mode),
+          //       ),
         ],
       ),
       body: const _HomeView(),
+      drawer: SideMenu(
+        scaffoldKey: scaffoldKey,
+      ),
     );
   }
 }

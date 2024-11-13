@@ -16,6 +16,12 @@ class MenuItem {
 
 const appMenuItems = <MenuItem>[
   MenuItem(
+    title: 'Contador Riverpood ',
+    subtitle: 'Introducción a Riverpood ',
+    link: '/counter',
+    icon: Icons.list_alt_rounded,
+  ),
+  MenuItem(
     title: 'Botones',
     subtitle: 'Varios botones en Flutter',
     link: '/buttons',
@@ -29,9 +35,9 @@ const appMenuItems = <MenuItem>[
   ),
   MenuItem(
     title: 'Scroll Infinito',
-    subtitle: 'Un contenedor estlizado',
+    subtitle: 'Listas infinitas',
     link: '/infinite-scroll',
-    icon: Icons.credit_card,
+    icon: Icons.list_alt_rounded,
   ),
   MenuItem(
     title: 'Progress Indicators',
@@ -62,5 +68,11 @@ const appMenuItems = <MenuItem>[
     subtitle: 'Pequeño tutorial introductorio',
     link: '/tutorial',
     icon: Icons.accessible_rounded,
+  ),
+  MenuItem(
+    title: 'Cambio de temas',
+    subtitle: 'Pantalla para la configuracion de temas',
+    link: '/themes',
+    icon: Icons.color_lens_rounded,
   ),
 ];

@@ -37,8 +37,8 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/animated',
-      name: AnimatedScreens.name,
-      builder: (context, state) => const AnimatedScreens(),
+      name: AnimatedScreen.name,
+      builder: (context, state) => const AnimatedScreen(),
     ),
     GoRoute(
       path: '/ui-controls',
@@ -49,6 +49,16 @@ final appRouter = GoRouter(
       path: '/tutorial',
       name: AppTutorialScreen.name,
       builder: (context, state) => const AppTutorialScreen(),
+    ),
+    GoRoute(
+      path: '/themes',
+      name: ThemesScreen.name,
+      builder: (context, state) => const ThemesScreen(),
+    ),
+    GoRoute(
+      path: '/counter',
+      name: CounterScreen.name,
+      builder: (context, state) => const CounterScreen(),
     ),
   ],
 );
